@@ -23,7 +23,7 @@ namespace Project
         {
             InitializeComponent();
             UcitavanjePodataka pd = new UcitavanjePodataka();
-            App.Podaci = UcitavanjePodataka.Ucitaj_listu("podaci.txt");
+            App.Podaci = UcitavanjePodataka.Ucitaj_listu("UlazniPodaci/podaci.txt");
             
             this.DataContext = this;
             tab1Uloge.ItemsSource = App.Podaci;

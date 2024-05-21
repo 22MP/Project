@@ -31,4 +31,10 @@
     <Resource Include="Slike\Placeholder.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="UlazniPodaci\podaci.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
