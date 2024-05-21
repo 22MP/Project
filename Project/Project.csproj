@@ -31,8 +31,4 @@
     <Resource Include="Slike\Placeholder.jpg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UlazniPodaci\" />
-  </ItemGroup>
-
 </Project>
