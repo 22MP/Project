@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Project
 {
     
-    internal class Uloga : INotifyPropertyChanged
+    public class Uloga : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)

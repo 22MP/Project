@@ -17,7 +17,7 @@
     </Window.Resources>
     <Grid>
         <TabControl>
-            <!-- prvi tab -->
+            <!-- Prvi tab -->
             <TabItem Header="Uloge">
                 <Grid>
                     <Grid.Background>
@@ -36,7 +36,7 @@
                     </Grid.RowDefinitions>
                     
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="40" Foreground="White" FontWeight="Bold" Margin="20 0" >Uloge u pozorištu</TextBlock>
-                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical">
                         <Label Content="Pretraži uloge: " FontSize="16" FontWeight="Bold"  Foreground="White"/>
                         <TextBox Name="tab1Pretraga" FontSize="30" TextChanged="tab1Pretraga_TextChanged"  TextWrapping="Wrap" Margin="5 0"  />
                     </StackPanel>
@@ -61,11 +61,19 @@
                 </Grid>
             </TabItem>
 
-            <!-- drugi tab -->
-            <TabItem Header="Dodjeli">
+            <!-- Drugi tab -->
+            <TabItem Header="Dodeli ulogu">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                
             </TabItem>
 
-            <!-- treći tab -->
+            <!-- Treći tab -->
             <TabItem Header="Istorija" VerticalAlignment="Top">
             </TabItem>
         </TabControl>
