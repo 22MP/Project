@@ -63,14 +63,21 @@
 
             <!-- Drugi tab -->
             <TabItem Header="Dodeli ulogu">
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+
+                    <TreeView Name="Tab2_ListaUloga" FontSize="15">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Uloga}">
+                                <TextBlock Text="{Binding Predstava}"/>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+
                 </Grid>
-                
             </TabItem>
 
             <!-- Treći tab -->

@@ -27,13 +27,13 @@ namespace Project
         {
             this.Ime = "";
             this.Prezime = "";
-            this.JMBG1 = "";
+            this.JMBG = "";
         }
         public Glumac(string ime, string prezime, string JMBG)
         {
             this.Ime = ime;
             this.Prezime = prezime;
-            this.JMBG1 = JMBG;
+            this.JMBG = JMBG;
         }
         #endregion
 

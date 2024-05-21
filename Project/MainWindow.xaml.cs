@@ -22,11 +22,16 @@ namespace Project
         public MainWindow()
         {
             InitializeComponent();
+
+            // Tab1
             UcitavanjePodataka pd = new UcitavanjePodataka();
             App.Podaci = UcitavanjePodataka.Ucitaj_listu("UlazniPodaci/podaci.txt");
             
             this.DataContext = this;
             tab1Uloge.ItemsSource = App.Podaci;
+
+            // Tab2
+            Tab2_ListaUloga.ItemsSource = App.Podaci;
         }
 
         private void tab1Pretraga_TextChanged(object sender, TextChangedEventArgs e)
