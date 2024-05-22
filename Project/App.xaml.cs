@@ -13,9 +13,13 @@ namespace Project
         static Uloga selektovanaUloga = null;
 
         static ObservableCollection<Uloga> podaci;
-        internal static Uloga SelektovanaUloga { get => selektovanaUloga; set => selektovanaUloga = value; }
-        internal static ObservableCollection<Uloga> Podaci { get => podaci; set => podaci = value; }
-       
+        static ObservableCollection<Predstava> predstave;
+        static ObservableCollection<Glumac> glumci;
+        public static Uloga SelektovanaUloga { get => selektovanaUloga; set => selektovanaUloga = value; }
+        public static ObservableCollection<Uloga> Podaci { get => podaci; set => podaci = value; }
+        public static ObservableCollection<Predstava> Predstave { get => predstave; set => predstave = value; }
+        public static ObservableCollection<Glumac> Glumci { get => glumci; set => glumci = value; }
+
     }
 
 

@@ -20,6 +20,7 @@ namespace Project
     public partial class MainWindow : Window
     {
         UcitavanjePodataka pd = new UcitavanjePodataka();
+        Point startPoint = new Point();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +32,11 @@ namespace Project
             tab1Uloge.ItemsSource = App.Podaci;
 
             // Tab2
-            ObservableCollection<Predstava> predstave = NapraviListuPredstava(App.Podaci);  // Pravimo listu predstava pomocu liste uloga         
-            Tab2_ListaUloga.ItemsSource = predstave;
+            App.Predstave = NapraviListuPredstava(App.Podaci);  // Pravimo listu predstava pomocu liste uloga
+            App.Glumci = NapraviListuGlumaca();
+
+            Tab2_ListaUloga.ItemsSource = App.Predstave;
+            Tab2_ListaGlumaca.ItemsSource = App.Glumci;
 
             // Tab3
             tab3Uloge.ItemsSource = App.Podaci;
@@ -102,5 +106,125 @@ namespace Project
             return listaPredstava;
         }
 
+        private ObservableCollection<Glumac> NapraviListuGlumaca()
+        {
+            ObservableCollection<Glumac> glumci = new ObservableCollection<Glumac>();
+
+            glumci.Add(new Glumac("Iva", "Manojlović", "0303999326148"));
+            glumci.Add(new Glumac("Tatjana", "Dimitrijević", "0511008359894"));
+            glumci.Add(new Glumac("Milena", "Vasić", "1902000311186"));
+            glumci.Add(new Glumac("Zarko", "Stepanov", "2411008316764"));
+            glumci.Add(new Glumac("Ljubiša", "Dinčić", "3108005389247"));
+            glumci.Add(new Glumac("Dragan", "Vujić", "0506999386416"));
+
+            return glumci;
+        }
+
+        private void Tab2_ListaUloga_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
+        }
+
+        private void Tab2_ListaUloga_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                Point mousePos = e.GetPosition(null);
+                Vector diff = startPoint - mousePos;
+
+                if (e.LeftButton == MouseButtonState.Pressed &&
+                    (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+                {
+                    TreeView treeView = sender as TreeView;
+                    TreeViewItem treeViewItem =
+                        FindAncestor<TreeViewItem>((DependencyObject)e.OriginalSource);
+
+                    Uloga uloga = GetItemFromTreeViewItem(treeView, treeViewItem) as Uloga;
+
+                    if (uloga.Dostupnost == "Nedostupna")
+                    {
+                        MessageBox.Show("Ta uloga je vec dodeljena!");
+                        return;
+                    }
+
+                    DataObject dragData = new DataObject("myFormat", uloga);
+                    DragDrop.DoDragDrop(treeViewItem, dragData, DragDropEffects.Move);
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
+        {
+            do
+            {
+                if (current is T)
+                {
+                    return (T)current;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            while (current != null);
+            return null;
+        }
+
+        private object GetItemFromTreeViewItem(ItemsControl container, TreeViewItem item)
+        {
+            object data = container.ItemContainerGenerator.ItemFromContainer(item);
+            if (data == DependencyProperty.UnsetValue)
+            {
+                foreach (object subItem in container.Items)
+                {
+                    ItemsControl parent = container.ItemContainerGenerator.ContainerFromItem(subItem) as ItemsControl;
+                    if (parent != null)
+                    {
+                        data = GetItemFromTreeViewItem(parent, item);
+                        if (data != DependencyProperty.UnsetValue)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return data;
+        }
+
+        private void Tab2_ListaGlumaca_DragEnter(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        private void Tab2_ListaGlumaca_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("myFormat"))
+            {
+                Uloga uloga = e.Data.GetData("myFormat") as Uloga;
+
+                TreeView treeView = sender as TreeView;
+                TreeViewItem treeViewItem =
+                    FindAncestor<TreeViewItem>((DependencyObject)e.OriginalSource);
+
+                Glumac glumac = (Glumac)treeView.ItemContainerGenerator.
+                     ItemFromContainer(treeViewItem);
+
+                if (glumac != null)
+                {
+                    glumac.DodeljeneUloge.Add(uloga);
+                    uloga.Dostupnost = "Nedostupna";
+                }
+            }
+        }
+
+        private void Tab2_Dodaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

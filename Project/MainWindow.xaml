@@ -64,12 +64,22 @@
             <!-- Drugi tab -->
             <TabItem Header="Dodeli ulogu">
                 <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Slike/Background.jpg"  Stretch="UniformToFill"/>
+                    </Grid.Background>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TreeView Name="Tab2_ListaUloga" FontSize="15" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TreeView Name="Tab2_ListaUloga" FontSize="15" Grid.Column="0" Margin="100 100 0 50" PreviewMouseLeftButtonDown="Tab2_ListaUloga_PreviewMouseLeftButtonDown"
+                              MouseMove="Tab2_ListaUloga_MouseMove">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type local:Predstava}" ItemsSource="{Binding SveUloge}">
                                 <TextBlock Text="{Binding Naziv}"/>
@@ -80,7 +90,8 @@
                                     <Image Source="{Binding Ikonica}" Width="30" Height="30"/>
                                     <TextBlock VerticalAlignment="Center">
                                         <TextBlock>(</TextBlock>
-                                        <TextBlock Text="{Binding Sifra}"/>
+                                        <TextBlock Text="{Binding Sifra}">
+                                        </TextBlock>
                                         <TextBlock>)</TextBlock>
                                         <TextBlock Text="{Binding Naziv}" FontWeight="Bold"/>
                                         <TextBlock>[</TextBlock>
@@ -92,6 +103,34 @@
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
+
+                    <TreeView Name="Tab2_ListaGlumaca" FontSize="15" Grid.Column="1" Margin="0 100 100 50" AllowDrop="True"
+                              DragEnter="Tab2_ListaGlumaca_DragEnter" Drop="Tab2_ListaGlumaca_Drop">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Glumac}" ItemsSource="{Binding DodeljeneUloge}">
+                                <TextBlock>
+                                    <TextBlock Text="{Binding Ime}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Prezime}" FontWeight="Bold"/>
+                                    <TextBlock>[</TextBlock>
+                                    <TextBlock Text="{Binding JMBG}"/>
+                                    <TextBlock>]</TextBlock>
+                                </TextBlock>
+                            </HierarchicalDataTemplate>
+
+                            <DataTemplate DataType="{x:Type local:Uloga}">
+                                <TextBlock>
+                                    <TextBlock Text="{Binding Naziv}"/>
+                                    <TextBlock>[</TextBlock>
+                                    <TextBlock Text="{Binding Predstava}" FontStyle="Italic"/>
+                                    <TextBlock>]</TextBlock>
+                                </TextBlock>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+
+                    <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Margin="0 0 0 50" Padding="5" Background="White" Click="Tab2_Dodaj_Click">Dodaj glumca</Button>
+    
 
                 </Grid>
             </TabItem>
