@@ -1,0 +1,32 @@
+﻿<Window x:Class="Project.DodajGlumca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project"
+        mc:Ignorable="d"
+        Title="DodajGlumca" Height="700" Width="750">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Slike/Background.jpg"  Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Border Background="White" CornerRadius="10, 10, 10, 10" Margin="150 150">
+            <StackPanel Margin="10 5">
+                <Label HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Content="Dodaj glumca" Margin="0 5 0 0"/>
+
+                <Label Content="Ime:" FontSize="16" FontWeight="Bold"/>
+                <TextBox Name="UnosIme" FontSize="16" FontWeight="Bold"/>
+
+                <Label Content="Prezime:" FontSize="16" FontWeight="Bold"/>
+                <TextBox Name="UnosPrezime" FontSize="16" FontWeight="Bold"/>
+
+                <Label Content="JMBG:" FontSize="16" FontWeight="Bold"/>
+                <TextBox Name="UnosJMBG" FontSize="16" FontWeight="Bold"/>
+
+                <Button Content="Dodaj" Click="Dodaj_Glumca_Click" Background="White" FontWeight="Bold" FontSize="30" 
+                        Margin="150 40 " Height="45"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

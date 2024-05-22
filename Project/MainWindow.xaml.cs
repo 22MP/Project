@@ -144,7 +144,7 @@ namespace Project
 
                     if (uloga.Dostupnost == "Nedostupna")
                     {
-                        MessageBox.Show("Ta uloga je vec dodeljena!");
+                        MessageBox.Show("Ta uloga je već dodeljena!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -224,7 +224,8 @@ namespace Project
 
         private void Tab2_Dodaj_Click(object sender, RoutedEventArgs e)
         {
-
+            DodajGlumca dodajGlumca = new DodajGlumca();
+            dodajGlumca.Show();
         }
     }
 }
