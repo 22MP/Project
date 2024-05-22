@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project
 {
@@ -53,5 +55,30 @@ namespace Project
             return lista;
         }
 
+
+        public static void Export(string file, ObservableCollection<Uloga> uloge)
+        {
+            StreamWriter sw = null;
+
+            string linija = null;
+            try
+            {
+                sw = new StreamWriter(file);
+                foreach(Uloga u in App.Podaci) { 
+
+                    linija= u.Ikonica+","+u.Sifra+","+u.Naziv+","+u.Predstava+","+u.TipUloge+","+u.Dostupnost+"\n";
+                    sw.WriteLine(linija);
+                    
+                }
+
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Greska prilikom exporta!");
+            }
+
+
+        }
     }
 }

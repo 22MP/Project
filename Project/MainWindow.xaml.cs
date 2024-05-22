@@ -19,12 +19,12 @@ namespace Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        UcitavanjePodataka pd = new UcitavanjePodataka();
         public MainWindow()
         {
             InitializeComponent();
 
             // Tab1
-            UcitavanjePodataka pd = new UcitavanjePodataka();
             App.Podaci = UcitavanjePodataka.Ucitaj_listu("UlazniPodaci/podaci.txt");
             
             this.DataContext = this;
@@ -32,6 +32,9 @@ namespace Project
 
             // Tab2
             Tab2_ListaUloga.ItemsSource = App.Podaci;
+
+            // Tab3
+            tab3Uloge.ItemsSource = App.Podaci;
         }
 
         private void tab1Pretraga_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,6 +72,9 @@ namespace Project
             dodajUlogu.Show();
         }
 
-       
+        private void tab3Export_Click(object sender, RoutedEventArgs e)
+        {
+            UcitavanjePodataka.Export("UlazniPodaci/export.txt", App.Podaci);
+        }
     }
 }
