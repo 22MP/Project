@@ -31,7 +31,8 @@ namespace Project
             tab1Uloge.ItemsSource = App.Podaci;
 
             // Tab2
-            Tab2_ListaUloga.ItemsSource = App.Podaci;
+            ObservableCollection<Predstava> predstave = NapraviListuPredstava(App.Podaci);  // Pravimo listu predstava pomocu liste uloga         
+            Tab2_ListaUloga.ItemsSource = predstave;
 
             // Tab3
             tab3Uloge.ItemsSource = App.Podaci;
@@ -76,5 +77,30 @@ namespace Project
         {
             UcitavanjePodataka.Export("UlazniPodaci/export.txt", App.Podaci);
         }
+
+        private ObservableCollection<Predstava> NapraviListuPredstava(ObservableCollection<Uloga> listaUloga)
+        {
+            // Recnik nam govori da li se predstava nalazi vec u listu (key), a value predstavlja objekat te predstave
+            Dictionary<string, Predstava> recnik = new Dictionary<string, Predstava>();
+            ObservableCollection<Predstava> listaPredstava = new ObservableCollection<Predstava>();
+
+            foreach (Uloga u in listaUloga)
+            {
+                if (!recnik.ContainsKey(u.Predstava))
+                {
+                    Predstava nova = new Predstava(u.Predstava);    // Pravimo novu predstavu i dodajemo ulogu u njenu listu uloga
+                    nova.DodajUlogu(u);
+                    listaPredstava.Add(nova);
+                    recnik.Add(u.Predstava, nova);
+                } else
+                {
+                    Predstava p = recnik[u.Predstava];
+                    p.DodajUlogu(u);
+                }
+            }
+
+            return listaPredstava;
+        }
+
     }
 }

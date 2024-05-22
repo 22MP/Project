@@ -69,11 +69,27 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TreeView Name="Tab2_ListaUloga" FontSize="15">
+                    <TreeView Name="Tab2_ListaUloga" FontSize="15" Grid.Column="0">
                         <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type local:Uloga}">
-                                <TextBlock Text="{Binding Predstava}"/>
+                            <HierarchicalDataTemplate DataType="{x:Type local:Predstava}" ItemsSource="{Binding SveUloge}">
+                                <TextBlock Text="{Binding Naziv}"/>
                             </HierarchicalDataTemplate>
+                            <DataTemplate DataType="{x:Type local:Uloga}">
+                                
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Image Source="{Binding Ikonica}" Width="30" Height="30"/>
+                                    <TextBlock VerticalAlignment="Center">
+                                        <TextBlock>(</TextBlock>
+                                        <TextBlock Text="{Binding Sifra}"/>
+                                        <TextBlock>)</TextBlock>
+                                        <TextBlock Text="{Binding Naziv}" FontWeight="Bold"/>
+                                        <TextBlock>[</TextBlock>
+                                        <TextBlock Text="{Binding TipUloge}"/>
+                                        <TextBlock>]</TextBlock>                                                                               
+                                    </TextBlock>
+                                </StackPanel>
+                                
+                            </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
 
