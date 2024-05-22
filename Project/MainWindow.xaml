@@ -174,20 +174,16 @@
                             <DataGridTextColumn Header="Dostupnost" Width="*" Binding="{Binding Path=Dostupnost}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="20 5 20 25" FontSize="14" FontWeight="Medium" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="tab3Glumci" ItemsSource="{Binding Glumac}" IsReadOnly="True" AutoGenerateColumns="False" >
+                    
+                    <DataGrid Name="Tab3_ListaGlumaca" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="20 5 20 25" FontSize="14"
+                              ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Glumac}" IsReadOnly="True" FontWeight="Medium">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="GLUMCI" Width="0.5*" IsReadOnly="True">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source = "{Binding Path=Ikonica}" Width="90" Height="80" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding Path=Ime}"/>
-                            <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding Path=Prezime}"/>
-                            <DataGridTextColumn Header="Predstava" Width="*" Binding="{Binding Path=Predstava}"/>
-                            <DataGridTextColumn Header="Broj dodjeljenih uloga" Width="*" Binding="{Binding Path= Ime}"/>
-                            <DataGridTextColumn Header="Omiljena uloga" Width="*" Binding="{Binding Path=Prezime}"/>
+                            <DataGridTextColumn Header="Ime" Width="*" Binding="{Binding Ime}"/>
+                            <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding Prezime}"/>
+                            <DataGridTextColumn Header="JMBG" Width="*" Binding="{Binding JMBG}"/>
+                            <DataGridTextColumn Header="Broj dodjeljenih uloga" Width="*" Binding="{Binding DodeljeneUloge.Count}"/>
+                            <DataGridTextColumn Header="Omiljena uloga" Width="*" Binding="{Binding JMBG}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

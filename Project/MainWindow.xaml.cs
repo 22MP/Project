@@ -26,7 +26,7 @@ namespace Project
             InitializeComponent();
 
             // Tab1
-            App.Podaci = UcitavanjePodataka.Ucitaj_listu("UlazniPodaci/podaci.txt");
+            App.Podaci = UcitavanjePodataka.Ucitaj_listu("Podaci/podaci.txt");
             
             this.DataContext = this;
             tab1Uloge.ItemsSource = App.Podaci;
@@ -40,6 +40,7 @@ namespace Project
 
             // Tab3
             tab3Uloge.ItemsSource = App.Podaci;
+            Tab3_ListaGlumaca.ItemsSource = App.Glumci;
         }
 
         private void tab1Pretraga_TextChanged(object sender, TextChangedEventArgs e)
@@ -79,7 +80,8 @@ namespace Project
 
         private void tab3Export_Click(object sender, RoutedEventArgs e)
         {
-            UcitavanjePodataka.Export("UlazniPodaci/export.txt", App.Podaci);
+            UcitavanjePodataka.ExportUloge("Podaci/izlazniPodaciUloge.txt", App.Podaci);
+            UcitavanjePodataka.ExportGlumci("Podaci/izlazniPodaciGlumci.txt", App.Glumci);
         }
 
         private ObservableCollection<Predstava> NapraviListuPredstava(ObservableCollection<Uloga> listaUloga)

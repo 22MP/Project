@@ -56,7 +56,7 @@ namespace Project
         }
 
 
-        public static void Export(string file, ObservableCollection<Uloga> uloge)
+        public static void ExportUloge(string file, ObservableCollection<Uloga> uloge)
         {
             StreamWriter sw = null;
 
@@ -64,7 +64,7 @@ namespace Project
             try
             {
                 sw = new StreamWriter(file);
-                foreach(Uloga u in App.Podaci) { 
+                foreach(Uloga u in uloge) { 
 
                     linija= u.Ikonica+","+u.Sifra+","+u.Naziv+","+u.Predstava+","+u.TipUloge+","+u.Dostupnost+"\n";
                     sw.WriteLine(linija);
@@ -72,13 +72,39 @@ namespace Project
                 }
 
                 sw.Close();
+                MessageBox.Show("Uspesno sacuvani podaci!");
             }
             catch (Exception e)
             {
                 MessageBox.Show("Greska prilikom exporta!");
             }
-
-
         }
+
+        public static void ExportGlumci(string file, ObservableCollection<Glumac> glumci)
+        {
+            StreamWriter sw = null;
+
+            string linija = null;
+            try
+            {
+                sw = new StreamWriter(file);
+                foreach (Glumac glumac in glumci)
+                {
+                    linija = glumac.Ime + "," + glumac.Prezime + "," + glumac.JMBG;
+                    foreach (Uloga u in glumac.DodeljeneUloge)
+                        linija += "," + u.Naziv;
+
+                    sw.WriteLine(linija);
+                }
+
+                sw.Close();
+                MessageBox.Show("Uspesno sacuvani podaci!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Greska prilikom exporta!");
+            }
+        }
+
     }
 }
