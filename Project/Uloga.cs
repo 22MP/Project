@@ -24,6 +24,7 @@ namespace Project
         private string _predstava;
         private string _tipUloge;
         private string _dostupnost;
+        private int _brojDodjeljenihUloga;
 
 
         #region KONSTRUKTOR
@@ -35,6 +36,7 @@ namespace Project
             _tipUloge = tipUloge;
             _ikonica = ikonica;
             _dostupnost= "Dostupna";
+            _brojDodjeljenihUloga = 0;
         }
 
         public Uloga()
@@ -45,6 +47,7 @@ namespace Project
             _tipUloge = "";
             _ikonica = "";
             _dostupnost = "Dostupna";
+            _brojDodjeljenihUloga = 0;
         }
 
         #endregion
@@ -118,6 +121,19 @@ namespace Project
                 {
                     _dostupnost = value;
                     OnPropertyChanged("Dostupnost");
+                }
+            }
+        }
+
+        public int BrojDodjeljenihUloga
+        {
+            get { return _brojDodjeljenihUloga; }
+            set
+            {
+                if (value != _brojDodjeljenihUloga)
+                {
+                    _brojDodjeljenihUloga = value;
+                    OnPropertyChanged("BrojDodjeljenihUloga");
                 }
             }
         }
