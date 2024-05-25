@@ -21,6 +21,7 @@ namespace Project
         private string prezime;
         private string jmbg;
         private ObservableCollection<Uloga> dodeljeneUloge = new ObservableCollection<Uloga>();
+        private Uloga omiljenaUloga;
 
         #region KONSTRUKTORI
         public Glumac()
@@ -28,12 +29,14 @@ namespace Project
             this.Ime = "";
             this.Prezime = "";
             this.JMBG = "";
+            this.omiljenaUloga = null;
         }
         public Glumac(string ime, string prezime, string JMBG)
         {
             this.Ime = ime;
             this.Prezime = prezime;
             this.JMBG = JMBG;
+            this.omiljenaUloga = null;
         }
         #endregion
 
@@ -89,6 +92,42 @@ namespace Project
                 }
             }
         }
+
+        public Uloga OmiljenaUloga
+        {
+            get { return this.omiljenaUloga; }
+            set
+            {
+                if (this.omiljenaUloga != value)
+                {
+                    this.omiljenaUloga = value;
+                    this.NotifyPropertyChanged("OmiljenaUloga");
+                }
+            }
+        }
         #endregion
+
+        public void DodajUlogu(Uloga nova)
+        {
+            DodeljeneUloge.Add(nova);
+            if (OmiljenaUloga == null)   // Ako je u pitanju prva uloga glumcu -> to mu je omiljena
+                OmiljenaUloga = nova;
+            else
+            {
+                int brojOmiljeneUloge = 0;
+                int brojNoveUloge= 0;
+
+                foreach (Uloga u in DodeljeneUloge)     // Brojimo koliko puta je glumac dobio omiljenu ulogu, a koliko ovu novu koju smo dodali
+                {
+                    if (u.Naziv == OmiljenaUloga.Naziv)
+                        ++brojOmiljeneUloge;
+                    else if (u.Naziv == nova.Naziv)
+                        ++brojNoveUloge;
+                }
+
+                if (brojNoveUloge > brojOmiljeneUloge)
+                    OmiljenaUloga = nova;
+            }
+        }
     }
 }

@@ -146,7 +146,7 @@ namespace Project
 
                     if (uloga.Dostupnost == "Nedostupna")
                     {
-                        MessageBox.Show("Ta uloga je već dodeljena!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Ta uloga nije dostupna!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -218,8 +218,9 @@ namespace Project
 
                 if (glumac != null)
                 {
-                    glumac.DodeljeneUloge.Add(uloga);
                     uloga.Dostupnost = "Nedostupna";
+                    ++(uloga.BrojDodjeljenihUloga);
+                    glumac.DodajUlogu(uloga);
                 }
             }
         }

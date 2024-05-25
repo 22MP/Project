@@ -187,7 +187,7 @@
                             <DataGridTextColumn Header="Prezime" Width="*" Binding="{Binding Prezime}"/>
                             <DataGridTextColumn Header="JMBG" Width="*" Binding="{Binding JMBG}"/>
                             <DataGridTextColumn Header="Broj dodjeljenih uloga" Width="*" Binding="{Binding DodeljeneUloge.Count}"/>
-                            <DataGridTextColumn Header="Omiljena uloga" Width="*" Binding="{Binding JMBG}"/>
+                            <DataGridTextColumn Header="Omiljena uloga" Width="*" Binding="{Binding OmiljenaUloga.Naziv}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
