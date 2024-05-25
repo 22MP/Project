@@ -32,7 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Podaci\podaci.txt">
+    <None Update="Podaci\ulazniPodaciGlumci.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Podaci\ulazniPodaciUloge.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

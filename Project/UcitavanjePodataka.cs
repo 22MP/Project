@@ -55,6 +55,32 @@ namespace Project
             return lista;
         }
 
+        public static ObservableCollection<Glumac> UcitajGlumce(string file)
+        {
+            ObservableCollection<Glumac> glumci = new ObservableCollection<Glumac>();
+            string linija;
+            TextReader tr = null;
+            try
+            {
+                tr = new StreamReader(File.Open(file, FileMode.Open));
+
+                while ((linija = tr.ReadLine()) != null)
+                {
+                    string[] delovi = linija.Split('|');
+                    glumci.Add(new Glumac(delovi[0], delovi[1], delovi[2]));
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            if (tr != null)
+            {
+                tr.Close();
+            }
+            return glumci;
+        }
 
         public static void ExportUloge(string file, ObservableCollection<Uloga> uloge)
         {

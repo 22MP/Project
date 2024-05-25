@@ -26,14 +26,14 @@ namespace Project
             InitializeComponent();
 
             // Tab1
-            App.Podaci = UcitavanjePodataka.Ucitaj_listu("Podaci/podaci.txt");
+            App.Podaci = UcitavanjePodataka.Ucitaj_listu("Podaci/ulazniPodaciUloge.txt");
             
             this.DataContext = this;
             tab1Uloge.ItemsSource = App.Podaci;
 
             // Tab2
             App.Predstave = NapraviListuPredstava(App.Podaci);  // Pravimo listu predstava pomocu liste uloga
-            App.Glumci = NapraviListuGlumaca();
+            App.Glumci = UcitavanjePodataka.UcitajGlumce("Podaci/ulazniPodaciGlumci.txt");
 
             Tab2_ListaUloga.ItemsSource = App.Predstave;
             Tab2_ListaGlumaca.ItemsSource = App.Glumci;
@@ -107,21 +107,6 @@ namespace Project
 
             return listaPredstava;
         }
-
-        private ObservableCollection<Glumac> NapraviListuGlumaca()
-        {
-            ObservableCollection<Glumac> glumci = new ObservableCollection<Glumac>();
-
-            glumci.Add(new Glumac("Iva", "Manojlović", "0303999326148"));
-            glumci.Add(new Glumac("Tatjana", "Dimitrijević", "0511008359894"));
-            glumci.Add(new Glumac("Milena", "Vasić", "1902000311186"));
-            glumci.Add(new Glumac("Zarko", "Stepanov", "2411008316764"));
-            glumci.Add(new Glumac("Ljubiša", "Dinčić", "3108005389247"));
-            glumci.Add(new Glumac("Dragan", "Vujić", "0506999386416"));
-
-            return glumci;
-        }
-
         private void Tab2_ListaUloga_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
