@@ -25,10 +25,16 @@
                 <TextBox Name="predstava" FontSize="16"/>
 
                 <Label Content="Tip uloge:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Name="tipUloge" FontSize="16"/>
+                <ComboBox Width="250" Name="tipUloge" HorizontalAlignment="Left"   >
+                    <ComboBoxItem>Glavna</ComboBoxItem>
+                    <ComboBoxItem>Sporedna</ComboBoxItem>
+                </ComboBox>
 
                 <Label Content="Dostupnost:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Name="dostupnost" FontSize="16"/>
+                <ComboBox Width="250" Name="dostupnost" HorizontalAlignment="Left"   >
+                    <ComboBoxItem>Dostupna</ComboBoxItem>
+                    <ComboBoxItem>Nedostupna</ComboBoxItem>
+                </ComboBox>
 
                 <Button Name="ikonica" Click="ikonica_Click" Background="White" Height="116" Width="148"  Margin="0 30 0 0">
                     <Image x:Name="slika" Source="/Slike/Placeholder.jpg" Stretch="Uniform" Height="116" Width="148" HorizontalAlignment="Center"/>

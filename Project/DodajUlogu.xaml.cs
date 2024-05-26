@@ -33,7 +33,7 @@ namespace Project
         private void dodajBtn_Click(object sender, RoutedEventArgs e)
         {
             zatvori = true;
-            if (sifra.Text.Equals("") || naziv.Text.Equals("") || predstava.Text.Equals("") || tipUloge.Equals("") || putanja.Equals(""))
+            if (sifra.Text.Equals("") || naziv.Text.Equals("") || predstava.Text.Equals("") || tipUloge.Text.Equals("") || putanja.Equals(""))
             {
                 MessageBox.Show("Niste popunili sva polja!", "Greška!", MessageBoxButton.OK, MessageBoxImage.Error);
                 zatvori = false;
